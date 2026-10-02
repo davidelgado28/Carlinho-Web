@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlinho OS Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: monospace;
+        }
+        #monitor {
+            background-color: #000;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            image-rendering: pixelated; 
+        }
+    </style>
+</head>
+<body>
+    <canvas id="monitor"></canvas>
+    <script type="module" src="kernel.js"></script>
+</body>
+</html>
