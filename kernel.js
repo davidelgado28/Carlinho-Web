@@ -30,26 +30,29 @@ class Kernel {
         };
     }
 
-    bootstrap() {
-        this.display.init();
-        const bg = this.display.colors.black; 
-        
-        const sampleCode = "CLEAR\nPRINT C\nPRINT A\nPRINT R\nHALT";
-        this.vfs.writeFile('/home/codigo.src', new TextEncoder().encode(sampleCode));
+async bootstrap() {
+    this.display.init();
+    const bg = this.display.colors.black; 
+    
+    this.display.clearScreen(bg);
+    this.display.print("Inicializando Carlinho OS\n", this.display.colors.lightGray, bg);
+    this.display.print("Carregando VFS do IndexedDB", this.display.colors.lightGray, bg);
 
-        this.display.clearScreen(bg);
-        this.display.print("Carlinho OS Web v1.0 - Sistema Completo\n", this.display.colors.green, bg);
-        this.display.print("Digite 'edit /home/codigo.src' ou 'web http://example.com'\n", this.display.colors.lightGray, bg);
-        this.display.print("Para compilar: 'compile /home/codigo.src /bin/app.exe'\n", this.display.colors.lightGray, bg);
-        this.display.print("Para executar: 'exec /bin/app.exe'\n", this.display.colors.lightGray, bg);
-        this.display.print("========================================================\n", this.display.colors.green, bg);
-        this.keyboard.onKeyPress = (e) => {
-            if (this.activeProcess === 'shell') this.shell.handleInput(e);
-            else if (this.activeProcess === 'editor') this.editor.handleInput(e);
-            else if (this.activeProcess === 'browser') this.browser.handleInput(e);
-        };
+    await this.vfs.init();
+    
+    this.display.print("OK\n", this.display.colors.green, bg);
+    this.display.print("Carregando drivers de I/O...OK\n\n", this.display.colors.lightGray, bg);
+    
+    this.display.print("Carlinho OS Web v0.1\n", this.display.colors.green, bg);
+    this.display.print("========================================================\n", this.display.colors.green, bg);
 
-        this.shell.start();
+    this.keyboard.onKeyPress = (e) => {
+        if (this.activeProcess === 'shell') this.shell.handleInput(e);
+        else if (this.activeProcess === 'editor') this.editor.handleInput(e);
+        else if (this.activeProcess === 'browser') this.browser.handleInput(e);
+    };
+
+    this.shell.start();
     }
 }
 const os = new Kernel();
