@@ -38,7 +38,7 @@ async bootstrap() {
     this.display.print("Inicializando Carlinho OS\n", this.display.colors.lightGray, bg);
     this.display.print("Carregando VFS do IndexedDB", this.display.colors.lightGray, bg);
     await this.vfs.init();
-    this.display.print("Carregando drivers de I/O...OK\n\n", this.display.colors.lightGray, bg);
+    this.display.print("\nCarregando drivers de I/O...OK\n\n", this.display.colors.lightGray, bg);
     
     this.display.print("Carlinho OS Web v0.1\n", this.display.colors.green, bg);
     this.display.print("========================================================\n", this.display.colors.green, bg);
